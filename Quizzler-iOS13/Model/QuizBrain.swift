@@ -24,11 +24,12 @@ struct QuizBrain {
         Quiz(q: "No piece of square dry paper can be folded in half more than 7 times.", a: "False"),
         Quiz(q: "Chocolate affects a dog's heart and nervous system; a few ounces are enough to kill a small dog.", a: "True")
     ]
-    
+    var score = 0
     var questionNumber = 0
     
-    func checkAnswer(_ userAnswer: String) -> Bool {
+    mutating func checkAnswer(_ userAnswer: String) -> Bool {
         if userAnswer == quiz[questionNumber].answer {
+            updateScore()
             return true
         } else {
             return false
@@ -48,6 +49,19 @@ struct QuizBrain {
             questionNumber += 1
         } else {
             questionNumber = 0
+            resetScore()
         }
+    }
+    
+    func getScore() -> Int {
+        return score
+    }
+    
+    mutating func updateScore() {
+        self.score += 1
+    }
+    
+    mutating func resetScore() {
+        self.score = 0
     }
 }

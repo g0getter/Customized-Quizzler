@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var questionText: UILabel!
     @IBOutlet weak var trueButton: UIButton!
     @IBOutlet weak var falseButton: UIButton!
@@ -31,6 +32,7 @@ class ViewController: UIViewController {
         
         if userGotitRight {
             sender.backgroundColor = .green
+//            quizBrain.updateScore() // logic이 view에 들어가면 안됨.
         } else {
             sender.backgroundColor = .red
         }
@@ -44,7 +46,7 @@ class ViewController: UIViewController {
     @objc func updateUI() {
         questionText.text = quizBrain.getQuestionText()
         progressBar.progress = quizBrain.getProgress()
-        
+        scoreLabel.text = "Score: \(quizBrain.getScore())"
         trueButton.backgroundColor = .clear
         falseButton.backgroundColor = .clear
         
